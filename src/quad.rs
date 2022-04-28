@@ -4,6 +4,9 @@
 // https://opensource.org/licenses/MIT
 
 use std::ops::Index;
+use num_traits::{Num, One, Zero};
+
+use crate::error::ParseQuadError;
 
 #[macro_use]
 mod macros {
@@ -157,6 +160,36 @@ impl Index<usize> for Quad {
         }
     }
 }
+
+impl Zero for Quad {
+    fn zero() -> Self {
+        todo!()
+    }
+
+    fn is_zero(&self) -> bool {
+        todo!()
+    }
+}
+
+impl One for Quad {
+    fn one() -> Self {
+        todo!()
+    }
+}
+
+impl Num for Quad {
+    type FromStrRadixErr = ParseQuadError;
+
+    fn from_str_radix(str: &str, radix: u32) -> Result<Self, Self::FromStrRadixErr> {
+        match radix {
+            10 => {
+                Ok(Quad::from(str))
+            }
+            _ => panic!("Only radix 10 is supported. You attempted to use a radix of {}", radix)
+        }
+    }
+}
+
 
 #[cfg(test)]
 mod tests {

@@ -40,7 +40,7 @@ macro_rules! prec {
             actual[2],
             actual[3],
         );
-        assert!(diff < epsilon, message);
+        assert!(diff < epsilon, "{}", message);
     };
 }
 
@@ -76,9 +76,9 @@ macro_rules! exact {
             actual[3],
         );
         if expected.is_nan() {
-            assert!(actual.is_nan(), message);
+            assert!(actual.is_nan(), "{}", message);
         } else {
-            assert!(expected == actual, message);
+            assert!(expected == actual, "{}", message);
         }
     };
 }
